@@ -13,9 +13,34 @@ import java.util.ArrayList;
 public class Faculty { 
     
     private static Connection connection;
-    private static ArrayList<String> faculty = new ArrayList<String>();
+    private static ArrayList<Faculty> faculty = new ArrayList<Faculty>();
     private static PreparedStatement facultyStatement;
     private static ResultSet resultSet;
+    
+    private String name;
+    private int id;
+    
+    public Faculty(String name){
+        this.name = name;
+    }
+    
+    public Faculty(int id, String name){
+        this.name = name;
+        this.id = id;
+    }
+    
+    public int getId(){
+        return id;
+    }
+    
+    public String getName(){
+        return name;
+    }
+    
+    @Override
+    public String toString(){
+        return name;
+    }
     
     public static void addFaculty(String name){
         
@@ -31,17 +56,17 @@ public class Faculty {
         
     }
     
-    public static ArrayList<String> getFacultyList() {
+    public static ArrayList<Faculty> getFacultyList() {
         
         connection = DBConnection.getConnection();
-        ArrayList<String> returnFaculty = new ArrayList<String>();
+        ArrayList<Faculty> returnFaculty = new ArrayList<Faculty>();
         try{
             
-            facultyStatement = connection.prepareStatement("select name from faculty order by name");
+            facultyStatement = connection.prepareStatement("select id, name from faculty order by name");
             resultSet = facultyStatement.executeQuery();
             
             while(resultSet.next()){
-                returnFaculty.add(resultSet.getString(1));
+                returnFaculty.add(new Faculty(resultSet.getInt(1),resultSet.getString(2)));
             }
         }
         catch(SQLException sqlException){
