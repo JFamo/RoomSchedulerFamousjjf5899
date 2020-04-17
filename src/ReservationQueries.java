@@ -41,12 +41,12 @@ public class ReservationQueries {
         ArrayList<ReservationEntry> returnReservations = new ArrayList<ReservationEntry>();
         try{
             
-            reservationStatement = connection.prepareStatement("select faculty, room, timestamp, seats from reservations where date=(?)");
+            reservationStatement = connection.prepareStatement("select rowid, faculty, room, timestamp, seats from reservations where date=(?)");
             reservationStatement.setString(1, date);
             resultSet = reservationStatement.executeQuery();
             
             while(resultSet.next()){
-                returnReservations.add(new ReservationEntry(resultSet.getInt(1), resultSet.getInt(2), date, resultSet.getInt(4), resultSet.getTimestamp(3)));
+                returnReservations.add(new ReservationEntry(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(3), date, resultSet.getInt(5), resultSet.getTimestamp(4)));
             }
         }
         catch(SQLException sqlException){
@@ -80,6 +80,31 @@ public class ReservationQueries {
         }
         
         return returnReservations;
+        
+    }
+    
+    public static String getReservationString(ReservationEntry reservation){
+        
+        connection = DBConnection.getConnection();
+        String output = "ERROR";
+        try{
+            
+            reservationStatement = connection.prepareStatement("SELECT faculty.name, rooms.name FROM faculty, rooms WHERE faculty.id IN (SELECT faculty FROM reservations WHERE rowid=(?)) AND rooms.id IN (SELECT room FROM reservations WHERE rowid=(?))");
+            reservationStatement.setInt(1, reservation.getId());
+            reservationStatement.setInt(2, reservation.getId());
+            resultSet = reservationStatement.executeQuery();
+            
+            while(resultSet.next()){
+                output = resultSet.getString(2) + " reserved by " + resultSet.getString(1) + " on " + reservation.getDate();
+            }
+        }
+        catch(SQLException sqlException){
+            
+            sqlException.printStackTrace();
+            
+        }
+        
+        return output;
         
     }
     

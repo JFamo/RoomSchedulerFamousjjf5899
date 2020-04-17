@@ -50,9 +50,11 @@ public class Window extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         dateComboBox2 = new javax.swing.JComboBox<>();
-        reserveSubmit1 = new javax.swing.JButton();
-        reserveSubmit2 = new javax.swing.JButton();
+        statusViewReservations = new javax.swing.JButton();
+        statusViewWaitlist = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        statusArea = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         addDateSubmit = new javax.swing.JButton();
@@ -219,26 +221,31 @@ public class Window extends javax.swing.JDialog {
             }
         });
 
-        reserveSubmit1.setBackground(new java.awt.Color(102, 102, 102));
-        reserveSubmit1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        reserveSubmit1.setText("View");
-        reserveSubmit1.addActionListener(new java.awt.event.ActionListener() {
+        statusViewReservations.setBackground(new java.awt.Color(102, 102, 102));
+        statusViewReservations.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        statusViewReservations.setText("View");
+        statusViewReservations.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reserveSubmit1ActionPerformed(evt);
+                statusViewReservationsActionPerformed(evt);
             }
         });
 
-        reserveSubmit2.setBackground(new java.awt.Color(102, 102, 102));
-        reserveSubmit2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        reserveSubmit2.setText("View");
-        reserveSubmit2.addActionListener(new java.awt.event.ActionListener() {
+        statusViewWaitlist.setBackground(new java.awt.Color(102, 102, 102));
+        statusViewWaitlist.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        statusViewWaitlist.setText("View");
+        statusViewWaitlist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reserveSubmit2ActionPerformed(evt);
+                statusViewWaitlistActionPerformed(evt);
             }
         });
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setText("View Reservations by Date");
+
+        statusArea.setColumns(20);
+        statusArea.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        statusArea.setRows(5);
+        jScrollPane1.setViewportView(statusArea);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -247,13 +254,18 @@ public class Window extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(reserveSubmit1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(reserveSubmit2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(statusViewReservations, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateComboBox2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(statusViewWaitlist, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,10 +277,12 @@ public class Window extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dateComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(reserveSubmit2))
+                    .addComponent(statusViewWaitlist))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reserveSubmit1)
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addComponent(statusViewReservations)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Status", jPanel3);
@@ -536,13 +550,25 @@ public class Window extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_dateComboBox2ActionPerformed
 
-    private void reserveSubmit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveSubmit1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reserveSubmit1ActionPerformed
+    private void statusViewReservationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusViewReservationsActionPerformed
+        
+        String date = dateComboBox2.getSelectedItem().toString();
+        ArrayList<ReservationEntry> reservations = ReservationQueries.getReservationsByDate(date);
+        String status = "";
+        
+        for(ReservationEntry reservation : reservations){
+            
+            status = status + ReservationQueries.getReservationString(reservation) + "\n";
+            
+        }
+        
+        statusArea.setText(status);
+        
+    }//GEN-LAST:event_statusViewReservationsActionPerformed
 
-    private void reserveSubmit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveSubmit2ActionPerformed
+    private void statusViewWaitlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusViewWaitlistActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_reserveSubmit2ActionPerformed
+    }//GEN-LAST:event_statusViewWaitlistActionPerformed
 
     /**
      * @param args the command line arguments
@@ -615,11 +641,13 @@ public class Window extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel reserveResult;
     private javax.swing.JTextField reserveSeats;
     private javax.swing.JButton reserveSubmit;
-    private javax.swing.JButton reserveSubmit1;
-    private javax.swing.JButton reserveSubmit2;
+    private javax.swing.JTextArea statusArea;
+    private javax.swing.JButton statusViewReservations;
+    private javax.swing.JButton statusViewWaitlist;
     // End of variables declaration//GEN-END:variables
 }

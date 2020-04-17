@@ -57,4 +57,29 @@ public class WaitlistQueries {
         
     }
     
+    public static String getReservationString(ReservationEntry reservation){
+        
+        connection = DBConnection.getConnection();
+        String output = "ERROR";
+        try{
+            
+            reservationStatement = connection.prepareStatement("SELECT faculty.name, rooms.name FROM faculty, rooms WHERE faculty.id IN (SELECT faculty FROM reservations WHERE rowid=(?)) AND rooms.id IN (SELECT room FROM reservations WHERE rowid=(?))");
+            reservationStatement.setInt(1, reservation.getId());
+            reservationStatement.setInt(2, reservation.getId());
+            resultSet = reservationStatement.executeQuery();
+            
+            while(resultSet.next()){
+                output = resultSet.getString(2) + " reserved by " + resultSet.getString(1) + " on " + reservation.getDate();
+            }
+        }
+        catch(SQLException sqlException){
+            
+            sqlException.printStackTrace();
+            
+        }
+        
+        return output;
+        
+    }
+    
 }
