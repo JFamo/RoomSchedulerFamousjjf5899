@@ -21,7 +21,7 @@ public class WaitlistQueries {
         
         connection = DBConnection.getConnection();
         try{
-            waitlistStatement = connection.prepareStatement("INSERT INTO waitlist (faculty, date, timestamp, seats) values (?)");
+            waitlistStatement = connection.prepareStatement("INSERT INTO waitlist (faculty, date, timestamp, seats) values (?,?,?,?)");
             waitlistStatement.setInt(1, waitlistEntry.getFaculty());
             waitlistStatement.setString(2, waitlistEntry.getDate());
             waitlistStatement.setTimestamp(3, waitlistEntry.getTimestamp());

@@ -21,7 +21,7 @@ public class ReservationQueries {
         
         connection = DBConnection.getConnection();
         try{
-            reservationStatement = connection.prepareStatement("INSERT INTO reservations (faculty, room, date, timestamp, seats) values (?)");
+            reservationStatement = connection.prepareStatement("INSERT INTO reservations (faculty, room, date, timestamp, seats) values (?,?,?,?,?)");
             reservationStatement.setInt(1, reservation.getFaculty());
             reservationStatement.setInt(2, reservation.getRoom());
             reservationStatement.setString(3, reservation.getDate());
@@ -46,7 +46,31 @@ public class ReservationQueries {
             resultSet = reservationStatement.executeQuery();
             
             while(resultSet.next()){
-                returnReservations.add(new ReservationEntry(resultSet.getInt(1), resultSet.getInt(2), date, resultSet.getInt(5), resultSet.getTimestamp(4)));
+                returnReservations.add(new ReservationEntry(resultSet.getInt(1), resultSet.getInt(2), date, resultSet.getInt(4), resultSet.getTimestamp(3)));
+            }
+        }
+        catch(SQLException sqlException){
+            
+            sqlException.printStackTrace();
+            
+        }
+        
+        return returnReservations;
+        
+    }
+    
+    public static ArrayList<ReservationEntry> getReservationsByRoom(int room) {
+        
+        connection = DBConnection.getConnection();
+        ArrayList<ReservationEntry> returnReservations = new ArrayList<ReservationEntry>();
+        try{
+            
+            reservationStatement = connection.prepareStatement("select faculty, date, timestamp, seats from reservations where room=(?)");
+            reservationStatement.setInt(1, room);
+            resultSet = reservationStatement.executeQuery();
+            
+            while(resultSet.next()){
+                returnReservations.add(new ReservationEntry(resultSet.getInt(1), room, resultSet.getString(2), resultSet.getInt(4), resultSet.getTimestamp(3)));
             }
         }
         catch(SQLException sqlException){
