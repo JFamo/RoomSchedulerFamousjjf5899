@@ -5,21 +5,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
+ * @author Joshua Famous
  * 
- * 
- * @author joshu
+ * This program replicates room selection using a Derby database with a Swing GUI for a small college.
+ * This class implements a faculty member, including local variables for use as a JComboBox object and methods for database manipulation of faculty.
  */
 
 public class Faculty { 
     
+    // Connection vars
     private static Connection connection;
     private static ArrayList<Faculty> faculty = new ArrayList<Faculty>();
     private static PreparedStatement facultyStatement;
     private static ResultSet resultSet;
     
+    // Instance vars
     private String name;
     private int id;
     
+    // Constructors
     public Faculty(String name){
         this.name = name;
     }
@@ -29,6 +33,7 @@ public class Faculty {
         this.id = id;
     }
     
+    // Accessors
     public int getId(){
         return id;
     }
@@ -37,11 +42,13 @@ public class Faculty {
         return name;
     }
     
+    // Override tostring so faculty ID's are compatible with JComboBox as with HTML select
     @Override
     public String toString(){
         return name;
     }
     
+    // Method to add faculty to database using insert query
     public static void addFaculty(String name){
         
         connection = DBConnection.getConnection();
@@ -56,6 +63,7 @@ public class Faculty {
         
     }
     
+    // Method to retrieve faculty using select query. Returns an arraylist of faculty objects
     public static ArrayList<Faculty> getFacultyList() {
         
         connection = DBConnection.getConnection();

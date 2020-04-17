@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author joshu
+ * @author Joshua Famous
+ * 
+ * This program replicates room selection using a Derby database with a Swing GUI for a small college.
+ * This class implements the GUI for the program and includes event handlers for the submit buttons.
  */
 
 import java.util.ArrayList;
@@ -567,7 +563,18 @@ public class Window extends javax.swing.JDialog {
     }//GEN-LAST:event_statusViewReservationsActionPerformed
 
     private void statusViewWaitlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusViewWaitlistActionPerformed
-        // TODO add your handling code here:
+
+        ArrayList<WaitlistEntry> waitlist = WaitlistQueries.getWaitlist();
+        String status = "";
+        
+        for(WaitlistEntry waitlistEntry : waitlist){
+            
+            status = status + WaitlistQueries.getWaitlistString(waitlistEntry) + "\n";
+            
+        }
+        
+        statusArea.setText(status);
+        
     }//GEN-LAST:event_statusViewWaitlistActionPerformed
 
     /**

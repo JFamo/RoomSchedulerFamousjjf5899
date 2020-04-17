@@ -5,18 +5,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
+ * @author Joshua Famous
  * 
- * 
- * @author joshu
+ * This program replicates room selection using a Derby database with a Swing GUI for a small college.
+ * This class implements the database queries for a room including a select to retrieve all rooms and insert to add new rooms.
  */
 
 public class RoomQueries { 
     
+    // Connection vars
     private static Connection connection;
     private static ArrayList<Room> faculty = new ArrayList<Room>();
     private static PreparedStatement roomStatement;
     private static ResultSet resultSet;
     
+    // Method to retrieve list of rooms using select query
     public static ArrayList<Room> getRoomList() {
         
         connection = DBConnection.getConnection();

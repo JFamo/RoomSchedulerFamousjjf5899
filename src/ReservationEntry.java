@@ -2,11 +2,15 @@ import java.util.Date;
 import java.sql.Timestamp;
 
 /**
- *
- * @author joshu
+ * @author Joshua Famous
+ * 
+ * This program replicates room selection using a Derby database with a Swing GUI for a small college.
+ * This class implements a single reservation entry in the reservations table including the ID of a faculty and ID of a room being reserved and the unique row id of the reservation.
  */
+
 public class ReservationEntry {
     
+    // Instance vars
     private int faculty;
     private int room;
     private String date;
@@ -14,6 +18,7 @@ public class ReservationEntry {
     private int id;
     private Timestamp timestamp;
     
+    // Constructors
     public ReservationEntry(int faculty, int room, String date, int seats){
         
         this.faculty = faculty;
@@ -45,6 +50,7 @@ public class ReservationEntry {
         
     }
     
+    // Accessors
     public int getFaculty(){
         return faculty;
     }

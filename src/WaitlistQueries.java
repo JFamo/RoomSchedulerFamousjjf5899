@@ -5,18 +5,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
+ * @author Joshua Famous
  * 
- * 
- * @author joshu
+ * This program replicates room selection using a Derby database with a Swing GUI for a small college.
+ * This class implements the database queries for the waitlist including adding entries and selecting by specific field values and converting an entry into a printable string.
  */
 
 public class WaitlistQueries { 
     
+    // Connection vars
     private static Connection connection;
     private static ArrayList<String> waitlistRequests = new ArrayList<String>();
     private static PreparedStatement waitlistStatement;
     private static ResultSet resultSet;
     
+    // Method to add a waitlist entry to the waitlist using an insert query
     public static void addWaitlist(WaitlistEntry waitlistEntry){
         
         connection = DBConnection.getConnection();
@@ -34,17 +37,18 @@ public class WaitlistQueries {
         
     }
     
+    // Method to retrieve the entire waitlist as arraylist of waitlist entries using select query
     public static ArrayList<WaitlistEntry> getWaitlist() {
         
         connection = DBConnection.getConnection();
         ArrayList<WaitlistEntry> returnWaitlist = new ArrayList<WaitlistEntry>();
         try{
             
-            waitlistStatement = connection.prepareStatement("select faculty, date, seats, timestamp from waitlist order by date");
+            waitlistStatement = connection.prepareStatement("select rowid, faculty, date, seats, timestamp from waitlist order by date");
             resultSet = waitlistStatement.executeQuery();
             
             while(resultSet.next()){
-                returnWaitlist.add(new WaitlistEntry(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getTimestamp(4)));
+                returnWaitlist.add(new WaitlistEntry(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getTimestamp(5)));
             }
         }
         catch(SQLException sqlException){
@@ -57,19 +61,19 @@ public class WaitlistQueries {
         
     }
     
-    public static String getReservationString(ReservationEntry reservation){
+    // Method to retrieve printable string form of given Waitlist entry
+    public static String getWaitlistString(WaitlistEntry waitlist){
         
         connection = DBConnection.getConnection();
         String output = "ERROR";
         try{
             
-            reservationStatement = connection.prepareStatement("SELECT faculty.name, rooms.name FROM faculty, rooms WHERE faculty.id IN (SELECT faculty FROM reservations WHERE rowid=(?)) AND rooms.id IN (SELECT room FROM reservations WHERE rowid=(?))");
-            reservationStatement.setInt(1, reservation.getId());
-            reservationStatement.setInt(2, reservation.getId());
-            resultSet = reservationStatement.executeQuery();
+            waitlistStatement = connection.prepareStatement("SELECT faculty.name, waitlist.seats FROM faculty, waitlist WHERE faculty.id IN (SELECT faculty FROM waitlist WHERE rowid=(?)) ORDER BY waitlist.date");
+            waitlistStatement.setInt(1, waitlist.getId());
+            resultSet = waitlistStatement.executeQuery();
             
             while(resultSet.next()){
-                output = resultSet.getString(2) + " reserved by " + resultSet.getString(1) + " on " + reservation.getDate();
+                output = resultSet.getString(1) + " waiting for " + resultSet.getString(2) + " seats on " + waitlist.getDate();
             }
         }
         catch(SQLException sqlException){

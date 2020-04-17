@@ -1,11 +1,13 @@
+/**
+ * @author Joshua Famous
+ * 
+ * This program replicates room selection using a Derby database with a Swing GUI for a small college.
+ * This class implements a database connection to be used by other classes for a centralized database URL and login.
+ */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-/**
-  * @author acv
-  * @author Joshua Famous jjf5899
- */ 
 
 public class DBConnection
 {

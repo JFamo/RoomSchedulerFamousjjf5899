@@ -5,18 +5,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
+ * @author Joshua Famous
  * 
- * 
- * @author joshu
+ * This program replicates room selection using a Derby database with a Swing GUI for a small college.
+ * This class implements the database queries for a reservation entry with options to add, retrieve based on field, and convert to printable string using SQL joins.
  */
 
 public class ReservationQueries { 
     
+    // Connection vars
     private static Connection connection;
     private static ArrayList<String> reservations = new ArrayList<String>();
     private static PreparedStatement reservationStatement;
     private static ResultSet resultSet;
     
+    // Method to add reservation using insert query
     public static void addReservation(ReservationEntry reservation){
         
         connection = DBConnection.getConnection();
@@ -35,6 +38,7 @@ public class ReservationQueries {
         
     }
     
+    // Method to retrieve reservations by date. Takes date in string format and returns arraylist of reservation entries
     public static ArrayList<ReservationEntry> getReservationsByDate(String date) {
         
         connection = DBConnection.getConnection();
@@ -59,6 +63,7 @@ public class ReservationQueries {
         
     }
     
+    // Method to retrieve reservation entries by room using select query. Takes room id as integer and returns arraylist of reservation entries
     public static ArrayList<ReservationEntry> getReservationsByRoom(int room) {
         
         connection = DBConnection.getConnection();
@@ -83,6 +88,7 @@ public class ReservationQueries {
         
     }
     
+    // Method to get printable string for a given reservation entry
     public static String getReservationString(ReservationEntry reservation){
         
         connection = DBConnection.getConnection();

@@ -5,18 +5,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
+ * @author Joshua Famous
  * 
- * 
- * @author joshu
+ * This program replicates room selection using a Derby database with a Swing GUI for a small college.
+ * This class implements a date object which is valid for reservations.
  */
 
 public class Date { 
     
+    // Connection vars
     private static Connection connection;
     private static ArrayList<String> dates = new ArrayList<String>();
     private static PreparedStatement dateStatement;
     private static ResultSet resultSet;
     
+    // Method to add a date to the database as a String using day, month, and year
     public static void addDate(String day, String month, String year){
         
         connection = DBConnection.getConnection();
@@ -31,12 +34,14 @@ public class Date {
         
     }
     
+    // Method to format day, month, and year strings for SQL compatibility
     public static String convertDate(String day, String month, String year){
         
         return year + "-" + month + "-" + day;
         
     }
     
+    // Method to retrieve all valid dates as an arraylist using select query. Returns an arraylist of strings representing SQL dates
     public static ArrayList<String> getDateList() {
         
         connection = DBConnection.getConnection();
