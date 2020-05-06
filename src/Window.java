@@ -517,6 +517,79 @@ public class Window extends javax.swing.JDialog {
         dateComboBox2.setModel(new javax.swing.DefaultComboBoxModel(Date.getDateList().toArray()));    
     }
     
+    private void updateWaitlist(){
+       
+        for(WaitlistEntry entry : WaitlistQueries.getWaitlist()){
+            
+            handleReservationRequest(entry.getSeats(), entry.getFaculty(), entry.getDate());
+            
+        }
+        
+    }
+    
+    private String handleReservationRequest(int seats, int faculty, String date){
+        
+        // Vars
+        int room = -1;
+        String room_name = "";
+        ArrayList<Room> rooms = RoomQueries.getRoomList();
+        
+        // Create array of reserved room IDs on this date
+        ArrayList<ReservationEntry> entries = ReservationQueries.getReservationsByDate(date);
+        ArrayList<Integer> reservedRooms = new ArrayList<Integer>();
+        
+        boolean faculty_restriction = false;
+        
+        // Iterate existing entries to create reserved room list and keep faculty unique
+        for(ReservationEntry testentry : entries){
+            
+            reservedRooms.add(testentry.getRoom());
+            if(testentry.getFaculty() == faculty){
+                faculty_restriction = true;
+            }
+            
+        }
+        
+        if(!faculty_restriction){
+        
+            // Match with smallest suitable available room
+            for(Room testroom : rooms){
+                if(testroom.getSeats() >= seats){
+                    if(!reservedRooms.contains(testroom.getId())){
+                        room = testroom.getId();
+                        room_name = testroom.getName();
+                        break;
+                    }
+                }
+            }
+
+            // If we have room, create reservation entry
+            if(room > 0){
+
+                ReservationEntry thisReservation = new ReservationEntry(faculty, room, date, seats);
+                ReservationQueries.addReservation(thisReservation);
+                return "Successfully reserved room " + room_name + " on " + date;
+
+            }
+            // If not, create waitlist entry
+            else{
+
+                WaitlistEntry thisWaitlist = new WaitlistEntry(faculty, date, seats);
+                WaitlistQueries.addWaitlist(thisWaitlist); 
+                return "Added to waitlist for " + seats + " seats on " + date;
+
+            }
+            
+        }
+        // Handle faculty member unique
+        else{
+            
+            return "This faculty member already has a reservation on " + date + "!";
+            
+        }
+        
+    }
+    
     private void addFacultyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFacultyButtonActionPerformed
         
         String facultyName = addFacultyName.getText();
@@ -558,68 +631,12 @@ public class Window extends javax.swing.JDialog {
 
     private void reserveSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveSubmitActionPerformed
         
-        // Get vars to create reservation entry
         int seats = Integer.parseInt(reserveSeats.getText());
         Faculty selectedFaculty = (Faculty)facultyComboBox.getSelectedItem();
         int faculty = selectedFaculty.getId();
-        int room = -1;
-        String room_name = "";
         String date = dateComboBox.getSelectedItem().toString();
-        ArrayList<Room> rooms = RoomQueries.getRoomList();
         
-        // Create array of reserved room IDs on this date
-        ArrayList<ReservationEntry> entries = ReservationQueries.getReservationsByDate(date);
-        ArrayList<Integer> reservedRooms = new ArrayList<Integer>();
-        
-        boolean faculty_restriction = false;
-        
-        // Iterate existing entries to create reserved room list and keep faculty unique
-        for(ReservationEntry testentry : entries){
-            
-            reservedRooms.add(testentry.getRoom());
-            if(testentry.getFaculty() == faculty){
-                faculty_restriction = true;
-            }
-            
-        }
-        
-        if(!faculty_restriction){
-        
-            // Match with smallest suitable available room
-            for(Room testroom : rooms){
-                if(testroom.getSeats() >= seats){
-                    if(!reservedRooms.contains(testroom.getId())){
-                        room = testroom.getId();
-                        room_name = testroom.getName();
-                        break;
-                    }
-                }
-            }
-
-            // If we have room, create reservation entry
-            if(room > 0){
-
-                ReservationEntry thisReservation = new ReservationEntry(faculty, room, date, seats);
-                ReservationQueries.addReservation(thisReservation);
-                reserveResult.setText("Successfully reserved room " + room_name + " on " + date);
-
-            }
-            // If not, create waitlist entry
-            else{
-
-                WaitlistEntry thisWaitlist = new WaitlistEntry(faculty, date, seats);
-                WaitlistQueries.addWaitlist(thisWaitlist); 
-                reserveResult.setText("Added to waitlist for " + seats + " seats on " + date);
-
-            }
-            
-        }
-        // Handle faculty member unique
-        else{
-            
-            reserveResult.setText("This faculty member already has a reservation on " + date + "!");
-            
-        }
+        reserveResult.setText(handleReservationRequest(seats, faculty, date));
         
     }//GEN-LAST:event_reserveSubmitActionPerformed
 
@@ -665,7 +682,7 @@ public class Window extends javax.swing.JDialog {
         RoomQueries.addRoom(roomName, roomSeats);
         addRoomResult.setText("Successfully added room " + roomName);
         
-        // Update waitlist
+        updateWaitlist();
         
     }//GEN-LAST:event_addRoomSubmitActionPerformed
 
