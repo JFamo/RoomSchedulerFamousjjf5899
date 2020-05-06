@@ -42,8 +42,18 @@ public class WaitlistQueries {
         
         connection = DBConnection.getConnection();
         try{
-            waitlistStatement = connection.prepareStatement("DELETE FROM waitlist WHERE rowid=?");
-            waitlistStatement.setInt(1, waitlistEntry.getId());
+            
+            if(waitlistEntry.getId() != -1){
+                waitlistStatement = connection.prepareStatement("DELETE FROM waitlist WHERE rowid=?");
+                waitlistStatement.setInt(1, waitlistEntry.getId());
+            }
+            else{
+                waitlistStatement = connection.prepareStatement("DELETE FROM waitlist WHERE faculty=? AND seats=? AND date=?");
+                waitlistStatement.setInt(1, waitlistEntry.getFaculty());
+                waitlistStatement.setInt(2, waitlistEntry.getSeats());
+                waitlistStatement.setString(3, waitlistEntry.getDate());
+            }
+            
         }
         catch(SQLException sqlException){
             sqlException.printStackTrace();

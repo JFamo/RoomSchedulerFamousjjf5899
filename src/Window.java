@@ -399,7 +399,11 @@ public class Window extends javax.swing.JDialog {
         });
 
         addRoomName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        addRoomName.setText("John Doe");
+        addRoomName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addRoomNameActionPerformed(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel14.setText("Room Name");
@@ -518,6 +522,7 @@ public class Window extends javax.swing.JDialog {
     }
     
     private void updateWaitlist(){
+        
        
         for(WaitlistEntry waitlistRequest : WaitlistQueries.getWaitlist()){
             
@@ -572,7 +577,7 @@ public class Window extends javax.swing.JDialog {
                 // If we were a waitlist entry, remove it from the waitlist first
                 if(request instanceof WaitlistEntry){
                     
-                    WaitlistQueries.deleteWaitlist((WaitlistEntry)request);
+                    WaitlistQueries.deleteWaitlist(new WaitlistEntry(request.getFaculty(), request.getDate(), request.getSeats()));
                     
                 }
                 
@@ -707,6 +712,10 @@ public class Window extends javax.swing.JDialog {
     private void addRoomSeatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomSeatsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addRoomSeatsActionPerformed
+
+    private void addRoomNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addRoomNameActionPerformed
 
     /**
      * @param args the command line arguments
