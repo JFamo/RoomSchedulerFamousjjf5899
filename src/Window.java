@@ -519,17 +519,20 @@ public class Window extends javax.swing.JDialog {
     
     private void updateWaitlist(){
        
-        for(WaitlistEntry entry : WaitlistQueries.getWaitlist()){
+        for(WaitlistEntry waitlistRequest : WaitlistQueries.getWaitlist()){
             
-            handleReservationRequest(entry.getSeats(), entry.getFaculty(), entry.getDate());
+            handleReservationRequest(waitlistRequest);
             
         }
         
     }
     
-    private String handleReservationRequest(int seats, int faculty, String date){
+    private String handleReservationRequest(Request request){
         
         // Vars
+        int seats = request.getSeats();
+        int faculty = request.getFaculty();
+        String date = request.getDate();
         int room = -1;
         String room_name = "";
         ArrayList<Room> rooms = RoomQueries.getRoomList();
@@ -573,11 +576,14 @@ public class Window extends javax.swing.JDialog {
             }
             // If not, create waitlist entry
             else{
-
-                WaitlistEntry thisWaitlist = new WaitlistEntry(faculty, date, seats);
-                WaitlistQueries.addWaitlist(thisWaitlist); 
-                return "Added to waitlist for " + seats + " seats on " + date;
-
+                
+                // If we were already a waitlist entry, don't add a new one
+                if(!(request instanceof WaitlistEntry)){
+                    WaitlistEntry thisWaitlist = new WaitlistEntry(faculty, date, seats);
+                    WaitlistQueries.addWaitlist(thisWaitlist); 
+                    return "Added to waitlist for " + seats + " seats on " + date;
+                }
+                
             }
             
         }
@@ -636,7 +642,9 @@ public class Window extends javax.swing.JDialog {
         int faculty = selectedFaculty.getId();
         String date = dateComboBox.getSelectedItem().toString();
         
-        reserveResult.setText(handleReservationRequest(seats, faculty, date));
+        Request request = new Request(faculty, date, seats);
+        
+        reserveResult.setText(handleReservationRequest(request));
         
     }//GEN-LAST:event_reserveSubmitActionPerformed
 

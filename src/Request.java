@@ -5,7 +5,7 @@ import java.sql.Timestamp;
  * @author Joshua Famous
  * 
  * This program replicates room selection using a Derby database with a Swing GUI for a small college.
- * This is the parent class for Waitlist Entries and Reservation Entries to specificy commonality.
+ * This is the parent class for Waitlist Entries and Reservation Entries to specify commonality.
  */
 
 public class Request {
