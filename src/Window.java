@@ -569,6 +569,13 @@ public class Window extends javax.swing.JDialog {
             // If we have room, create reservation entry
             if(room > 0){
 
+                // If we were a waitlist entry, remove it from the waitlist first
+                if(request instanceof WaitlistEntry){
+                    
+                    WaitlistQueries.deleteWaitlist((WaitlistEntry)request);
+                    
+                }
+                
                 ReservationEntry thisReservation = new ReservationEntry(faculty, room, date, seats);
                 ReservationQueries.addReservation(thisReservation);
                 return "Successfully reserved room " + room_name + " on " + date;
@@ -582,6 +589,9 @@ public class Window extends javax.swing.JDialog {
                     WaitlistEntry thisWaitlist = new WaitlistEntry(faculty, date, seats);
                     WaitlistQueries.addWaitlist(thisWaitlist); 
                     return "Added to waitlist for " + seats + " seats on " + date;
+                }
+                else{
+                    return "";
                 }
                 
             }

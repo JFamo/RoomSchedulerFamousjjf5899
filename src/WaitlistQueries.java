@@ -37,6 +37,20 @@ public class WaitlistQueries {
         
     }
     
+    // Method to remove a waitlist entry using a delete query
+    public static void deleteWaitlist(WaitlistEntry waitlistEntry){
+        
+        connection = DBConnection.getConnection();
+        try{
+            waitlistStatement = connection.prepareStatement("DELETE FROM waitlist WHERE rowid=?");
+            waitlistStatement.setInt(1, waitlistEntry.getId());
+        }
+        catch(SQLException sqlException){
+            sqlException.printStackTrace();
+        }
+        
+    }
+    
     // Method to retrieve the entire waitlist as arraylist of waitlist entries using select query
     public static ArrayList<WaitlistEntry> getWaitlist() {
         
@@ -68,8 +82,9 @@ public class WaitlistQueries {
         String output = "ERROR";
         try{
             
-            waitlistStatement = connection.prepareStatement("SELECT faculty.name, waitlist.seats FROM faculty, waitlist WHERE faculty.id IN (SELECT faculty FROM waitlist WHERE rowid=(?)) ORDER BY waitlist.date");
+            waitlistStatement = connection.prepareStatement("SELECT faculty.name, waitlist.seats FROM faculty, waitlist WHERE faculty.id IN (SELECT faculty FROM waitlist WHERE rowid=?) AND waitlist.seats IN (SELECT seats FROM waitlist WHERE rowid=?) ORDER BY waitlist.date");
             waitlistStatement.setInt(1, waitlist.getId());
+            waitlistStatement.setInt(2, waitlist.getId());
             resultSet = waitlistStatement.executeQuery();
             
             while(resultSet.next()){
