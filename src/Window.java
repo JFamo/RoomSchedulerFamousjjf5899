@@ -61,6 +61,14 @@ public class Window extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         addDateResult = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        addRoomSubmit = new javax.swing.JButton();
+        addRoomName = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        addRoomSeats = new javax.swing.JTextField();
+        addRoomResult = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -378,6 +386,79 @@ public class Window extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Add a Date", jPanel4);
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel13.setText("This page adds a new room to the system");
+
+        addRoomSubmit.setBackground(new java.awt.Color(102, 102, 102));
+        addRoomSubmit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addRoomSubmit.setText("Add");
+        addRoomSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addRoomSubmitActionPerformed(evt);
+            }
+        });
+
+        addRoomName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addRoomName.setText("John Doe");
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel14.setText("Room Name");
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel15.setText("Number of Seats");
+
+        addRoomSeats.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addRoomSeats.setText("0");
+        addRoomSeats.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addRoomSeatsActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(addRoomName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(207, 207, 207))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addRoomSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addRoomSeats, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(addRoomResult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addRoomName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addRoomSeats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(addRoomSubmit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addRoomResult, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Add a Room", jPanel5);
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Joshua Famous jjf5899");
@@ -577,6 +658,21 @@ public class Window extends javax.swing.JDialog {
         
     }//GEN-LAST:event_statusViewWaitlistActionPerformed
 
+    private void addRoomSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomSubmitActionPerformed
+        
+        String roomName = addRoomName.getText();
+        int roomSeats = Integer.parseInt(addRoomSeats.getText());
+        RoomQueries.addRoom(roomName, roomSeats);
+        addRoomResult.setText("Successfully added room " + roomName);
+        
+        // Update waitlist
+        
+    }//GEN-LAST:event_addRoomSubmitActionPerformed
+
+    private void addRoomSeatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomSeatsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addRoomSeatsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -628,6 +724,10 @@ public class Window extends javax.swing.JDialog {
     private javax.swing.JButton addFacultyButton;
     private javax.swing.JTextField addFacultyName;
     private javax.swing.JLabel addFacultyResult;
+    private javax.swing.JTextField addRoomName;
+    private javax.swing.JLabel addRoomResult;
+    private javax.swing.JTextField addRoomSeats;
+    private javax.swing.JButton addRoomSubmit;
     private javax.swing.JComboBox<String> dateComboBox;
     private javax.swing.JComboBox<String> dateComboBox2;
     private javax.swing.JComboBox<String> facultyComboBox;
@@ -636,6 +736,9 @@ public class Window extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -648,6 +751,7 @@ public class Window extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel reserveResult;

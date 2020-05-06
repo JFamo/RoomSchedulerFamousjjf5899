@@ -43,4 +43,20 @@ public class RoomQueries {
         
     }
     
+    // Method to add room to database using insert query
+    public static void addRoom(String name, int seats){
+        
+        connection = DBConnection.getConnection();
+        try{
+            roomStatement = connection.prepareStatement("INSERT INTO rooms (name,seats) values (?,?)");
+            roomStatement.setString(1, name);
+            roomStatement.setInt(2, seats);
+            roomStatement.executeUpdate();
+        }
+        catch(SQLException sqlException){
+            sqlException.printStackTrace();
+        }
+        
+    }
+    
 }
