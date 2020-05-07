@@ -38,6 +38,52 @@ public class ReservationQueries {
         
     }
     
+    // Method to remove reservation using delete query
+    public static void deleteReservation(ReservationEntry reservationEntry){
+        
+        connection = DBConnection.getConnection();
+        try{
+            
+            if(reservationEntry.getId() != -1){
+                reservationStatement = connection.prepareStatement("DELETE FROM reservations WHERE rowid=?");
+                reservationStatement.setInt(1, reservationEntry.getId());
+            }
+            else{
+                reservationStatement = connection.prepareStatement("DELETE FROM reservations WHERE faculty=? AND date=?");
+                reservationStatement.setInt(1, reservationEntry.getFaculty());
+                reservationStatement.setString(2, reservationEntry.getDate());
+            }
+            
+            reservationStatement.executeUpdate();
+            
+        }
+        catch(SQLException sqlException){
+            sqlException.printStackTrace();
+        }
+        
+    }
+    
+    // Method to find reservation entry given faculty and date
+    public static ReservationEntry findEntry(int faculty, String date){
+        
+        connection = DBConnection.getConnection();
+        try{
+            reservationStatement = connection.prepareStatement("SELECT rowid, faculty, room, timestamp, seats, date FROM reservations WHERE faculty=? AND date=?");
+            reservationStatement.setInt(1, faculty);
+            reservationStatement.setString(2, date);
+            resultSet = reservationStatement.executeQuery();
+            
+            while(resultSet.next()){
+                return new ReservationEntry(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(3), resultSet.getString(6), resultSet.getInt(5), resultSet.getTimestamp(4));
+            }
+        }
+        catch(SQLException sqlException){
+            sqlException.printStackTrace();
+        }
+        return null;
+        
+    }
+    
     // Method to retrieve reservations by date. Takes date in string format and returns arraylist of reservation entries
     public static ArrayList<ReservationEntry> getReservationsByDate(String date) {
         

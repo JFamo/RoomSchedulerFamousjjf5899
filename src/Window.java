@@ -28,6 +28,7 @@ public class Window extends javax.swing.JDialog {
     private void initComponents() {
 
         jComboBox2 = new javax.swing.JComboBox<>();
+        jDialog1 = new javax.swing.JDialog();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -69,10 +70,28 @@ public class Window extends javax.swing.JDialog {
         jLabel15 = new javax.swing.JLabel();
         addRoomSeats = new javax.swing.JTextField();
         addRoomResult = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        facultyComboBox2 = new javax.swing.JComboBox<>();
+        jLabel17 = new javax.swing.JLabel();
+        dateComboBox3 = new javax.swing.JComboBox<>();
+        cancelSubmit = new javax.swing.JButton();
+        cancelResult = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -463,6 +482,77 @@ public class Window extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Add a Room", jPanel5);
 
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel16.setText("Name");
+
+        facultyComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        facultyComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        facultyComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facultyComboBox2ActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel17.setText("Date");
+
+        dateComboBox3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        dateComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dateComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateComboBox3ActionPerformed(evt);
+            }
+        });
+
+        cancelSubmit.setBackground(new java.awt.Color(102, 102, 102));
+        cancelSubmit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cancelSubmit.setText("Request");
+        cancelSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelSubmitActionPerformed(evt);
+            }
+        });
+
+        cancelResult.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cancelSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(facultyComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(cancelResult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(facultyComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dateComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cancelSubmit)
+                .addGap(18, 18, 18)
+                .addComponent(cancelResult, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                .addGap(50, 50, 50))
+        );
+
+        jTabbedPane1.addTab("Cancel Reservation", jPanel6);
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Joshua Famous jjf5899");
@@ -514,11 +604,13 @@ public class Window extends javax.swing.JDialog {
     
     private void updateFacultyComboBox(){
         facultyComboBox.setModel(new javax.swing.DefaultComboBoxModel(Faculty.getFacultyList().toArray()));     
+        facultyComboBox2.setModel(new javax.swing.DefaultComboBoxModel(Faculty.getFacultyList().toArray()));     
     }
     
     private void updateDateComboBox(){
         dateComboBox.setModel(new javax.swing.DefaultComboBoxModel(Date.getDateList().toArray()));    
         dateComboBox2.setModel(new javax.swing.DefaultComboBoxModel(Date.getDateList().toArray()));    
+        dateComboBox3.setModel(new javax.swing.DefaultComboBoxModel(Date.getDateList().toArray()));    
     }
     
     private void updateWaitlist(){
@@ -554,6 +646,17 @@ public class Window extends javax.swing.JDialog {
             reservedRooms.add(testentry.getRoom());
             if(testentry.getFaculty() == faculty){
                 faculty_restriction = true;
+            }
+            
+        }
+        
+        // Check if we're on the waitlist for this date
+        for(WaitlistEntry waitlistEntry : WaitlistQueries.getWaitlist()){
+            
+            if(waitlistEntry.getFaculty() == faculty && waitlistEntry.getDate().equals(date) && !(request instanceof WaitlistEntry)){
+                
+                faculty_restriction = true;
+                
             }
             
         }
@@ -605,7 +708,7 @@ public class Window extends javax.swing.JDialog {
         // Handle faculty member unique
         else{
             
-            return "This faculty member already has a reservation on " + date + "!";
+            return "This faculty member already has a reservation or waitlisted request on " + date + "!";
             
         }
         
@@ -717,6 +820,39 @@ public class Window extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_addRoomNameActionPerformed
 
+    private void facultyComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facultyComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_facultyComboBox2ActionPerformed
+
+    private void dateComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateComboBox3ActionPerformed
+
+    private void cancelSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelSubmitActionPerformed
+        
+        // Cancel reservation
+        Faculty selectedFaculty = (Faculty)facultyComboBox2.getSelectedItem();
+        int faculty = selectedFaculty.getId();
+        String date = dateComboBox3.getSelectedItem().toString();
+        
+        WaitlistEntry thisWaitlist = WaitlistQueries.findEntry(faculty, date);
+        ReservationEntry thisEntry = ReservationQueries.findEntry(faculty, date);
+        
+        if(thisWaitlist != null){
+            WaitlistQueries.deleteWaitlist(thisWaitlist);
+            cancelResult.setText("Removed from waitlist successfully.");
+        }
+        else if(thisEntry != null){
+            ReservationQueries.deleteReservation(thisEntry);
+            cancelResult.setText("Removed reservation successfully.");
+            updateWaitlist();
+        }
+        else{
+            cancelResult.setText("No reservations found matching these criteria.");
+        }
+        
+    }//GEN-LAST:event_cancelSubmitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -772,10 +908,15 @@ public class Window extends javax.swing.JDialog {
     private javax.swing.JLabel addRoomResult;
     private javax.swing.JTextField addRoomSeats;
     private javax.swing.JButton addRoomSubmit;
+    private javax.swing.JLabel cancelResult;
+    private javax.swing.JButton cancelSubmit;
     private javax.swing.JComboBox<String> dateComboBox;
     private javax.swing.JComboBox<String> dateComboBox2;
+    private javax.swing.JComboBox<String> dateComboBox3;
     private javax.swing.JComboBox<String> facultyComboBox;
+    private javax.swing.JComboBox<String> facultyComboBox2;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -783,6 +924,8 @@ public class Window extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -796,6 +939,7 @@ public class Window extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel reserveResult;

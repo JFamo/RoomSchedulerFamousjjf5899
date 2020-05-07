@@ -54,10 +54,33 @@ public class WaitlistQueries {
                 waitlistStatement.setString(3, waitlistEntry.getDate());
             }
             
+            waitlistStatement.executeUpdate();
+            
         }
         catch(SQLException sqlException){
             sqlException.printStackTrace();
         }
+        
+    }
+    
+    // Method to find waitlist entry given faculty and date
+    public static WaitlistEntry findEntry(int faculty, String date){
+        
+        connection = DBConnection.getConnection();
+        try{
+            waitlistStatement = connection.prepareStatement("SELECT rowid, faculty, date, seats, timestamp FROM waitlist WHERE faculty=? AND date=?");
+            waitlistStatement.setInt(1, faculty);
+            waitlistStatement.setString(2, date);
+            resultSet = waitlistStatement.executeQuery();
+            
+            while(resultSet.next()){
+                return new WaitlistEntry(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getTimestamp(5));
+            }
+        }
+        catch(SQLException sqlException){
+            sqlException.printStackTrace();
+        }
+        return null;
         
     }
     
