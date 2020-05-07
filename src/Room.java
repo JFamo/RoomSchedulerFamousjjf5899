@@ -52,4 +52,10 @@ public class Room {
         
     }
     
+    // Override tostring so room names are compatible with JComboBox
+    @Override
+    public String toString(){
+        return this.name;
+    }
+    
 }

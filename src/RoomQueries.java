@@ -59,4 +59,19 @@ public class RoomQueries {
         
     }
     
+    // Method to remove room from database using delete query
+    public static void deleteRoom(int roomid){
+        
+        connection = DBConnection.getConnection();
+        try{
+            roomStatement = connection.prepareStatement("DELETE FROM rooms WHERE id=?");
+            roomStatement.setInt(1, roomid);
+            roomStatement.executeUpdate();
+        }
+        catch(SQLException sqlException){
+            sqlException.printStackTrace();
+        }
+        
+    }
+    
 }

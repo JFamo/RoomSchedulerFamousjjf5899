@@ -80,6 +80,12 @@ public class Window extends javax.swing.JDialog {
         dateComboBox3 = new javax.swing.JComboBox<>();
         cancelSubmit = new javax.swing.JButton();
         cancelResult = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        roomComboBox = new javax.swing.JComboBox<>();
+        dropSubmit = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        dropResult = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -387,25 +393,25 @@ public class Window extends javax.swing.JDialog {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addDateResult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addDateYear, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addDateDay, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addDateMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(addDateSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addDateResult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(addDateYear, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addDateDay, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addDateMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(addDateSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -417,27 +423,25 @@ public class Window extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(addDateMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(19, 19, 19)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(addDateDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(19, 19, 19)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(12, 12, 12))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                        .addGap(6, 6, 6))
                     .addComponent(addDateYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(addDateResult, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(addDateSubmit))
+                .addComponent(addDateSubmit)
+                .addGap(18, 18, 18)
+                .addComponent(addDateResult, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -591,6 +595,71 @@ public class Window extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Cancel Reservation", jPanel6);
 
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel19.setText("Delete a Room");
+
+        roomComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        roomComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        roomComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roomComboBoxActionPerformed(evt);
+            }
+        });
+
+        dropSubmit.setBackground(new java.awt.Color(102, 102, 102));
+        dropSubmit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        dropSubmit.setText("Drop");
+        dropSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropSubmitActionPerformed(evt);
+            }
+        });
+
+        dropResult.setColumns(20);
+        dropResult.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        dropResult.setRows(5);
+        jScrollPane2.setViewportView(dropResult);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(448, Short.MAX_VALUE))
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(dropSubmit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(roomComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 200, Short.MAX_VALUE))
+                            .addGap(448, 448, 448))
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addComponent(jScrollPane2)
+                            .addContainerGap()))))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel19)
+                .addContainerGap(326, Short.MAX_VALUE))
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(41, 41, 41)
+                    .addComponent(roomComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(dropSubmit)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                    .addGap(15, 15, 15)))
+        );
+
+        jTabbedPane1.addTab("Drop a Room", jPanel7);
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Joshua Famous jjf5899");
@@ -637,7 +706,12 @@ public class Window extends javax.swing.JDialog {
         
         updateFacultyComboBox();
         updateDateComboBox();
+        updateRoomComboBox();
         
+    }
+    
+    private void updateRoomComboBox(){
+        roomComboBox.setModel(new javax.swing.DefaultComboBoxModel(RoomQueries.getRoomList().toArray()));     
     }
     
     private void updateFacultyComboBox(){
@@ -652,14 +726,17 @@ public class Window extends javax.swing.JDialog {
         dateComboBox3.setModel(new javax.swing.DefaultComboBoxModel(Date.getDateList().toArray()));    
     }
     
-    private void updateWaitlist(){
-        
+    private String updateWaitlist(){
+       
+        String out = "";
        
         for(WaitlistEntry waitlistRequest : WaitlistQueries.getWaitlist()){
             
-            handleReservationRequest(waitlistRequest);
+            out = out + handleReservationRequest(waitlistRequest) + "\n";
             
         }
+        
+        return out;
         
     }
     
@@ -813,6 +890,7 @@ public class Window extends javax.swing.JDialog {
         addRoomResult.setText("Successfully added room " + roomName);
         
         updateWaitlist();
+        updateRoomComboBox();
         
     }//GEN-LAST:event_addRoomSubmitActionPerformed
 
@@ -930,6 +1008,38 @@ public class Window extends javax.swing.JDialog {
         
     }//GEN-LAST:event_statusViewFacultyActionPerformed
 
+    private void roomComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roomComboBoxActionPerformed
+
+    private void dropSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropSubmitActionPerformed
+        
+        Room selectedRoom = (Room)roomComboBox.getSelectedItem();
+        int room = selectedRoom.getId();
+        
+        // Get reservations for this room
+        for(ReservationEntry reservation : ReservationQueries.getReservationsByRoom(room)){
+            
+            // Remove reservation
+            ReservationQueries.deleteReservation(reservation);
+            
+            // Convert to waitlist entry
+            WaitlistEntry waitlist = new WaitlistEntry(reservation.getFaculty(), reservation.getDate(), reservation.getSeats());
+            WaitlistQueries.addWaitlist(waitlist);
+            
+        }
+        
+        // Remove
+        RoomQueries.deleteRoom(room);
+        
+        // Update waitlist to find new rooms
+        dropResult.setText(updateWaitlist());
+        
+        // Update combo box
+        updateRoomComboBox();
+        
+    }//GEN-LAST:event_dropSubmitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -990,6 +1100,8 @@ public class Window extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> dateComboBox;
     private javax.swing.JComboBox<String> dateComboBox2;
     private javax.swing.JComboBox<String> dateComboBox3;
+    private javax.swing.JTextArea dropResult;
+    private javax.swing.JButton dropSubmit;
     private javax.swing.JComboBox<String> facultyComboBox;
     private javax.swing.JComboBox<String> facultyComboBox2;
     private javax.swing.JComboBox<String> facultyComboBox3;
@@ -1005,6 +1117,7 @@ public class Window extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1019,11 +1132,14 @@ public class Window extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel reserveResult;
     private javax.swing.JTextField reserveSeats;
     private javax.swing.JButton reserveSubmit;
+    private javax.swing.JComboBox<String> roomComboBox;
     private javax.swing.JTextArea statusArea;
     private javax.swing.JButton statusViewFaculty;
     private javax.swing.JButton statusViewReservations;
