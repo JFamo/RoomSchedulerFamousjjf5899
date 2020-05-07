@@ -87,4 +87,28 @@ public class Faculty {
         
     }
     
+    // Method to retrieve faculty name using select query. Returns a string and takes an integer
+    public static String getFacultyName(int id) {
+        
+        connection = DBConnection.getConnection();
+        try{
+            
+            facultyStatement = connection.prepareStatement("select name from faculty where id=?");
+            facultyStatement.setInt(1, id);
+            resultSet = facultyStatement.executeQuery();
+            
+            while(resultSet.next()){
+                return resultSet.getString(1);
+            }
+        }
+        catch(SQLException sqlException){
+            
+            sqlException.printStackTrace();
+            
+        }
+        
+        return "ERROR";
+        
+    }
+    
 }

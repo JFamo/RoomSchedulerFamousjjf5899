@@ -802,7 +802,7 @@ public class Window extends javax.swing.JDialog {
                 
                 ReservationEntry thisReservation = new ReservationEntry(faculty, room, date, seats);
                 ReservationQueries.addReservation(thisReservation);
-                return "Successfully reserved room " + room_name + " on " + date;
+                return "Successfully reserved room " + room_name + " on " + date + " for " + Faculty.getFacultyName(faculty);
 
             }
             // If not, create waitlist entry
@@ -812,7 +812,7 @@ public class Window extends javax.swing.JDialog {
                 if(!(request instanceof WaitlistEntry)){
                     WaitlistEntry thisWaitlist = new WaitlistEntry(faculty, date, seats);
                     WaitlistQueries.addWaitlist(thisWaitlist); 
-                    return "Added to waitlist for " + seats + " seats on " + date;
+                    return "Added " + Faculty.getFacultyName(faculty) + " to waitlist for " + seats + " seats on " + date;
                 }
                 else{
                     return "";
@@ -824,7 +824,7 @@ public class Window extends javax.swing.JDialog {
         // Handle faculty member unique
         else{
             
-            return "This faculty member already has a reservation or waitlisted request on " + date + "!";
+            return Faculty.getFacultyName(faculty) + " already has a reservation or waitlisted request on " + date + "!";
             
         }
         
@@ -1016,6 +1016,7 @@ public class Window extends javax.swing.JDialog {
         
         Room selectedRoom = (Room)roomComboBox.getSelectedItem();
         int room = selectedRoom.getId();
+        String out = "";
         
         // Get reservations for this room
         for(ReservationEntry reservation : ReservationQueries.getReservationsByRoom(room)){
@@ -1026,14 +1027,17 @@ public class Window extends javax.swing.JDialog {
             // Convert to waitlist entry
             WaitlistEntry waitlist = new WaitlistEntry(reservation.getFaculty(), reservation.getDate(), reservation.getSeats());
             WaitlistQueries.addWaitlist(waitlist);
+            out = out + "Added " + Faculty.getFacultyName(waitlist.getFaculty()) + " to waitlist on " + waitlist.getDate() + "\n";
             
         }
         
         // Remove
         RoomQueries.deleteRoom(room);
         
+        out = out + updateWaitlist();
+        
         // Update waitlist to find new rooms
-        dropResult.setText(updateWaitlist());
+        dropResult.setText(out);
         
         // Update combo box
         updateRoomComboBox();
