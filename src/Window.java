@@ -52,6 +52,9 @@ public class Window extends javax.swing.JDialog {
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         statusArea = new javax.swing.JTextArea();
+        jLabel18 = new javax.swing.JLabel();
+        facultyComboBox3 = new javax.swing.JComboBox<>();
+        statusViewFaculty = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         addDateSubmit = new javax.swing.JButton();
@@ -121,11 +124,12 @@ public class Window extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(addFacultyResult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addFacultyName)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(addFacultyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 420, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(addFacultyButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addFacultyName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 236, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -200,7 +204,7 @@ public class Window extends javax.swing.JDialog {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(reserveSeats, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,6 +274,26 @@ public class Window extends javax.swing.JDialog {
         statusArea.setRows(5);
         jScrollPane1.setViewportView(statusArea);
 
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel18.setText("View Requests by Faculty");
+
+        facultyComboBox3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        facultyComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        facultyComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facultyComboBox3ActionPerformed(evt);
+            }
+        });
+
+        statusViewFaculty.setBackground(new java.awt.Color(102, 102, 102));
+        statusViewFaculty.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        statusViewFaculty.setText("View");
+        statusViewFaculty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusViewFacultyActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -277,32 +301,46 @@ public class Window extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(statusViewReservations, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateComboBox2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(statusViewWaitlist, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(statusViewReservations, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(dateComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, 200, Short.MAX_VALUE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(statusViewFaculty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(facultyComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(statusViewWaitlist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dateComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statusViewWaitlist))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(statusViewReservations)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dateComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(statusViewReservations))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(facultyComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel11))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(statusViewFaculty)
+                            .addComponent(statusViewWaitlist))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .addContainerGap())
@@ -352,7 +390,7 @@ public class Window extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -445,7 +483,7 @@ public class Window extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -506,7 +544,7 @@ public class Window extends javax.swing.JDialog {
 
         cancelSubmit.setBackground(new java.awt.Color(102, 102, 102));
         cancelSubmit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cancelSubmit.setText("Request");
+        cancelSubmit.setText("Cancel");
         cancelSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelSubmitActionPerformed(evt);
@@ -523,7 +561,7 @@ public class Window extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cancelSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -574,7 +612,7 @@ public class Window extends javax.swing.JDialog {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -604,7 +642,8 @@ public class Window extends javax.swing.JDialog {
     
     private void updateFacultyComboBox(){
         facultyComboBox.setModel(new javax.swing.DefaultComboBoxModel(Faculty.getFacultyList().toArray()));     
-        facultyComboBox2.setModel(new javax.swing.DefaultComboBoxModel(Faculty.getFacultyList().toArray()));     
+        facultyComboBox2.setModel(new javax.swing.DefaultComboBoxModel(Faculty.getFacultyList().toArray()));    
+        facultyComboBox3.setModel(new javax.swing.DefaultComboBoxModel(Faculty.getFacultyList().toArray()));  
     }
     
     private void updateDateComboBox(){
@@ -766,41 +805,6 @@ public class Window extends javax.swing.JDialog {
         
     }//GEN-LAST:event_reserveSubmitActionPerformed
 
-    private void dateComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dateComboBox2ActionPerformed
-
-    private void statusViewReservationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusViewReservationsActionPerformed
-        
-        String date = dateComboBox2.getSelectedItem().toString();
-        ArrayList<ReservationEntry> reservations = ReservationQueries.getReservationsByDate(date);
-        String status = "";
-        
-        for(ReservationEntry reservation : reservations){
-            
-            status = status + ReservationQueries.getReservationString(reservation) + "\n";
-            
-        }
-        
-        statusArea.setText(status);
-        
-    }//GEN-LAST:event_statusViewReservationsActionPerformed
-
-    private void statusViewWaitlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusViewWaitlistActionPerformed
-
-        ArrayList<WaitlistEntry> waitlist = WaitlistQueries.getWaitlist();
-        String status = "";
-        
-        for(WaitlistEntry waitlistEntry : waitlist){
-            
-            status = status + WaitlistQueries.getWaitlistString(waitlistEntry) + "\n";
-            
-        }
-        
-        statusArea.setText(status);
-        
-    }//GEN-LAST:event_statusViewWaitlistActionPerformed
-
     private void addRoomSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomSubmitActionPerformed
         
         String roomName = addRoomName.getText();
@@ -852,6 +856,79 @@ public class Window extends javax.swing.JDialog {
         }
         
     }//GEN-LAST:event_cancelSubmitActionPerformed
+
+    private void statusViewWaitlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusViewWaitlistActionPerformed
+
+        ArrayList<WaitlistEntry> waitlist = WaitlistQueries.getWaitlist();
+        String status = "";
+
+        for(WaitlistEntry waitlistEntry : waitlist){
+
+            status = status + WaitlistQueries.getWaitlistString(waitlistEntry) + "\n";
+
+        }
+
+        statusArea.setText(status);
+
+    }//GEN-LAST:event_statusViewWaitlistActionPerformed
+
+    private void statusViewReservationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusViewReservationsActionPerformed
+
+        String date = dateComboBox2.getSelectedItem().toString();
+        ArrayList<ReservationEntry> reservations = ReservationQueries.getReservationsByDate(date);
+        String status = "";
+
+        for(ReservationEntry reservation : reservations){
+
+            status = status + ReservationQueries.getReservationString(reservation) + "\n";
+
+        }
+
+        statusArea.setText(status);
+
+    }//GEN-LAST:event_statusViewReservationsActionPerformed
+
+    private void dateComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateComboBox2ActionPerformed
+
+    private void facultyComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facultyComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_facultyComboBox3ActionPerformed
+
+    private void statusViewFacultyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusViewFacultyActionPerformed
+        
+        // Get faculty ID
+        Faculty selectedFaculty = (Faculty)facultyComboBox3.getSelectedItem();
+        int faculty = selectedFaculty.getId();
+        String status = "";
+        
+        ArrayList<WaitlistEntry> waitlist = WaitlistQueries.getWaitlist();
+        for(WaitlistEntry waitlistEntry : waitlist){
+
+            if(waitlistEntry.getFaculty() == faculty){
+                status = status + WaitlistQueries.getWaitlistString(waitlistEntry) + "\n";
+            }
+
+        }
+        ArrayList<ReservationEntry> reservations = ReservationQueries.getReservations();
+        for(ReservationEntry reservation : reservations){
+
+            if(reservation.getFaculty() == faculty){
+                status = status + ReservationQueries.getReservationString(reservation) + "\n";
+            }
+
+        }
+        
+        if(status.equals("")){
+            
+            status = "No waitlist entries or reservations.";
+            
+        }
+
+        statusArea.setText(status);
+        
+    }//GEN-LAST:event_statusViewFacultyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -915,6 +992,7 @@ public class Window extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> dateComboBox3;
     private javax.swing.JComboBox<String> facultyComboBox;
     private javax.swing.JComboBox<String> facultyComboBox2;
+    private javax.swing.JComboBox<String> facultyComboBox3;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
@@ -926,6 +1004,7 @@ public class Window extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -946,6 +1025,7 @@ public class Window extends javax.swing.JDialog {
     private javax.swing.JTextField reserveSeats;
     private javax.swing.JButton reserveSubmit;
     private javax.swing.JTextArea statusArea;
+    private javax.swing.JButton statusViewFaculty;
     private javax.swing.JButton statusViewReservations;
     private javax.swing.JButton statusViewWaitlist;
     // End of variables declaration//GEN-END:variables

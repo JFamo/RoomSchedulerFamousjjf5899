@@ -116,12 +116,36 @@ public class ReservationQueries {
         ArrayList<ReservationEntry> returnReservations = new ArrayList<ReservationEntry>();
         try{
             
-            reservationStatement = connection.prepareStatement("select faculty, date, timestamp, seats from reservations where room=(?)");
+            reservationStatement = connection.prepareStatement("select rowid, faculty, date, timestamp, seats from reservations where room=(?)");
             reservationStatement.setInt(1, room);
             resultSet = reservationStatement.executeQuery();
             
             while(resultSet.next()){
-                returnReservations.add(new ReservationEntry(resultSet.getInt(1), room, resultSet.getString(2), resultSet.getInt(4), resultSet.getTimestamp(3)));
+                returnReservations.add(new ReservationEntry(resultSet.getInt(1), resultSet.getInt(2), room, resultSet.getString(3), resultSet.getInt(5), resultSet.getTimestamp(4)));
+            }
+        }
+        catch(SQLException sqlException){
+            
+            sqlException.printStackTrace();
+            
+        }
+        
+        return returnReservations;
+        
+    }
+    
+    // Method to retrieve all reservation entries using select query
+    public static ArrayList<ReservationEntry> getReservations() {
+        
+        connection = DBConnection.getConnection();
+        ArrayList<ReservationEntry> returnReservations = new ArrayList<ReservationEntry>();
+        try{
+            
+            reservationStatement = connection.prepareStatement("select rowid, faculty, date, timestamp, seats, room from reservations");
+            resultSet = reservationStatement.executeQuery();
+            
+            while(resultSet.next()){
+                returnReservations.add(new ReservationEntry(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(6), resultSet.getString(3), resultSet.getInt(5), resultSet.getTimestamp(4)));
             }
         }
         catch(SQLException sqlException){
